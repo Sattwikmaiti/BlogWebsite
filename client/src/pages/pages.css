@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,900;1,400;1,800&family=Raleway:ital,wght@0,300;1,300&display=swap');
+body{
+ background-color:
+ 
+#4D4855;
+}
+.reg .box{
+    height:25rem;
+}
+.box
+{
+    background-color: rgb(224, 218, 220);
+     height:19rem;
+     width:25rem;
+     display: flex;
+     flex-direction:column;
+  justify-content: space-evenly;
+  position:absolute;
+  top:30%;
+  left:40%;
+  border-radius:10px;
+  padding:1rem;
+}
+
+.email , .password,.user{
+    padding:1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.icons{
+    background-color: rgb(167, 194, 201);
+    padding:0.3rem;margin:0.4rem;
+    border-radius:10px;
+    color:rgb(38, 63, 63);
+    transition: all 0.3s ease-in-out;
+
+}
+.icons:hover{
+    transform: scale(1.2);
+    color:aquamarine;
+    cursor:pointer
+}
+input{
+    outline:none;
+    border:none;
+    height:2.5rem;
+    border-radius:10px;
+    padding:1rem;
+    color:gray;
+    opacity:0.8;
+    text-decoration: none  !important;
+    text-underline-position: none
+    
+
+
+}
+button{
+    width:50%;
+    
+    display:flex;
+
+    justify-content:space-between;
+    align-items: center;
+}
+
+.dont{
+    display:flex;
+    justify-content: center;
+    padding-top:0.1rem
+}
+
+
+.post{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    margin:3rem;
+    margin-bottom:4rem;
+}
+.info{
+    padding:4rem
+}
+
+.info>.btn{
+    
+    background-color: rgb(35, 104, 165);
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    color:aliceblue
+
+}
+.info{
+    text-decoration: none !important;
+    background-color:rgb(0, 0, 0) ;
+    
+}
+
+.title{
+
+    color:rgb(181, 192, 201);
+    text-decoration: underline ;
+    font-size:2.6rem
+  
+
+}
+.react-router-dom-link {
+    text-decoration: none;
+
+  }
+  
+.posts{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around ;
+    margin:3rem
+}
+.post:nth-child(even){
+    flex-direction: row-reverse;
+   
+   
+}
+.post:nth-child(odd)
+{
+    
+}
+
+.desc{
+    margin:2rem;
+    height:12rem;
+    color:rgb(143, 202, 214);
+    font-family: 'Playfair Display', serif;
+font-family: 'Raleway', sans-serif;
+}
+
+.img{
+   padding:1rem;
+    border:20px solid cadetblue;
+    border-radius:5px;
+   
+}
+img{
+    transition: all 0.2s ease-in-out;
+}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,900;1,400;1,800&display=swap');
+.title
+{
+    font-family: 'Playfair Display', serif;
+}
+
+.post>img:hover{
+    transform: scale(1.2);
+}
+
+.single{
+    display:flex;
+  gap:1rem
+}
+.content{
+    flex:6;
+   
+}
+.menu
+{
+    flex:3
+}
+
+.fullpost{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    margin-bottom:3rem
+}
+
+.image{
+    height:35rem;
+    width:35rem
+}
+.image>img{
+    height:30rem;
+    width:50vw;
+    border-radius:6px;
+    margin:4rem;  object-fit: cover;
+    padding:1rem;
+    border:15px solid whitesmoke
+    
+}
+
+.profilephoto>img{
+    height:3rem;
+    border-radius:50px;
+    width:3rem;
+    
+
+}
+
+.written,.author{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    gap:1rem;
+    margin-left:2.5rem;
+}
+.author{
+    width:50vw;
+    
+    
+}
+
+.name{
+    font-size: larger;
+}
+    
+.iconsoption{
+    display:flex;
+    gap:1rem
+}
+
+.iconsoption:hover {
+    cursor:pointer
+}
+.name{
+    font-family: 'Times New Roman', Times, serif;
+    padding:0.1rem;
+    text-decoration: underline solid black;
+}
+.title{
+    color:cadetblue
+}
+
+.description{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:45rem
+
+}
+.writeup{
+    margin-left:5rem;
+    background-color: black;
+    color:antiquewhite;
+    padding:1rem;
+    width:auto;
+    height:auto
+
+}
+.content{
+    background-color: black;
+    width:auto;
+   
+}
+.author{
+    color: antiquewhite;
+    margin-bottom:1rem
+}
+
+
+.menupost{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    
+    transform:scale(0.8);
+    border: 3px solid white;
+    
+}
+
+.menuinfo{
+    padding:1rem;
+    color:black
+}
+.menutitle{
+    padding:1rem;
+    color:rgb(102, 148, 161);
+    text-decoration: underline solid black;
+}
+.menudesc{
+    color:azure
+}
+
+.menubtn
+{
+    outline:none;
+    border:none;
+    background-color: #4D4855;
+}
+.menuimg>img{
+    border-radius:20px;
+    transform: scale(0.95);
+}
+.menuall{
+    overflow-y: scroll;
+    max-height:40rem
+}

@@ -1,0 +1,20 @@
+.links
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(37, 19, 70);
+    color:gainsboro;
+    height:2rem;
+    
+
+
+}
+.github{
+    margin:4rem
+}
+.github:hover{
+    border:1px solid white;
+    cursor: pointer;
+}
