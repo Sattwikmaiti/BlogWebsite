@@ -13,9 +13,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
+import p1 from "../images/demo1.jpeg"
 import {Link} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 const Navbar = () => {
+
+
+
+  
   const pages = ['Art','Science','Technology','Cinema','Design','Food'];
 
 
@@ -115,6 +120,7 @@ const Navbar = () => {
             Hublog
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} >
+          
             {pages.map((page) => (
              <Link to={`/?cat=${page}`} style={{textDecoration:'none'}}><Button
                 key={page}
@@ -127,6 +133,11 @@ const Navbar = () => {
             ))}
             <Link to="/write" style={{textDecoration:'none',color:'white',display:'block',padding:'1rem', fontWeight:'bolder'}} >Write</Link>
             <Link to="/login" style={{textDecoration:'none',color:'blueviolet',display:'block',padding:'1rem'}} >Login</Link>
+           
+              {/*<IconButton  >
+                <Link to="/profile"><Avatar alt="User" src={p1} /></Link>
+              </IconButton>
+            */}
             
           </Box>
 

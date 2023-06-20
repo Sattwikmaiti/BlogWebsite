@@ -2,7 +2,7 @@
 body{
  background-color:
  
-#4D4855;
+whitesmoke
 }
 .reg .box{
     height:25rem;
@@ -62,7 +62,8 @@ button{
     width:50%;
     
     display:flex;
-
+       outline:1px solid white;
+       border:1px solid white;
     justify-content:space-between;
     align-items: center;
 }
@@ -74,87 +75,14 @@ button{
 }
 
 
-.post{
-    display:flex;
-    flex-direction:row;
-    justify-content: space-between;
-    margin:3rem;
-    margin-bottom:4rem;
-}
-.info{
-    padding:4rem
-}
 
-.info>.btn{
-    
-    background-color: rgb(35, 104, 165);
-    display: flex;
-    justify-self: center;
-    justify-content: center;
-    color:aliceblue
-
-}
-.info{
-    text-decoration: none !important;
-    background-color:rgb(0, 0, 0) ;
-    
-}
-
-.title{
-
-    color:rgb(181, 192, 201);
-    text-decoration: underline ;
-    font-size:2.6rem
-  
-
-}
-.react-router-dom-link {
-    text-decoration: none;
-
-  }
-  
-.posts{
-    display: flex;
-    flex-direction: column;
-    justify-content:space-around ;
-    margin:3rem
-}
-.post:nth-child(even){
-    flex-direction: row-reverse;
-   
-   
-}
-.post:nth-child(odd)
-{
-    
-}
-
-.desc{
-    margin:2rem;
-    height:12rem;
-    color:rgb(143, 202, 214);
-    font-family: 'Playfair Display', serif;
-font-family: 'Raleway', sans-serif;
-}
-
-.img{
-   padding:1rem;
-    border:20px solid cadetblue;
-    border-radius:5px;
-   
-}
-img{
-    transition: all 0.2s ease-in-out;
-}
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,900;1,400;1,800&display=swap');
 .title
 {
     font-family: 'Playfair Display', serif;
 }
 
-.post>img:hover{
-    transform: scale(1.2);
-}
+
 
 .single{
     display:flex;
@@ -267,6 +195,7 @@ img{
     
     transform:scale(0.8);
     border: 3px solid white;
+    border-radius:25px
     
 }
 
@@ -297,3 +226,137 @@ img{
     overflow-y: scroll;
     max-height:40rem
 }
+
+
+.contents>div{
+   
+    padding:1rem
+
+}
+
+.titled{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    flex:2;
+    background-color: #aca2bd;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    
+    max-height:70rem
+}
+.value{
+    flex:7;
+    width:40%;
+    min-height:40rem
+}
+
+.steps{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    
+}
+
+.steps>div{
+    margin:1rem;
+}
+
+.contents{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+.titled>div{
+    border: 1px solid rgb(38, 57, 77);
+    background-color: aliceblue;box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.value>.input{
+    border: 1px solid rgb(38, 57, 77);
+   margin:1rem
+
+}
+
+
+
+.post{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:center;
+  
+  margin:5rem
+
+}
+ .img>img{
+    height:20rem;
+    width:20rem;
+    object-fit: cover;
+ }
+
+ .info{
+    background-color:antiquewhite;
+    height:20rem;
+    width:40rem;
+    padding:2rem;
+ }
+
+ .title{
+    color:black;
+    font-size:1.4rem
+ }
+
+ body{
+    font-family: 'Times New Roman', Times, serif;
+ }
+
+ .categories{display:flex;
+    flex-direction:row;
+   
+    gap:1rem;
+  margin:1rem;
+    
+ }
+
+ .cat{
+    border:1px solid black;
+    padding:0.2rem;
+   border-radius:4px
+
+ }
+
+ .section{
+    display:flex;
+    flex-direction: row;
+   
+    gap:1rem;
+    justify-content: space-between;
+ }
+
+ .aboutme{
+
+    margin-top:10rem;
+    position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 100px;
+  height: 250px;
+ }
+
+ .Categories{
+    border-top:2px solid black;
+    border-bottom:2px solid black
+ }
+
+ .link{
+    color:#4D4855
+ }
+ .aboutme .name{
+    padding:1rem
+ }
+
+ .username{
+    color:black;
+    text-decoration: underline;
+
+ }

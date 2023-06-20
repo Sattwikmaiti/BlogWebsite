@@ -1,0 +1,16 @@
+{
+    "title":"Han",
+    "username":"Sattwiki",
+    "desc":"The lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukuiThe lorf pd tommy kukui",
+    "photo":"https://picsum.photos/200/300/?blur",
+    "categories":["Science","Art","Anime","Sports","Development","Coding"]
+}
+
+
+
+{
+
+    "username":"Raju",
+    "email":"raju@gmail.com",
+    "password":"Raju"
+}

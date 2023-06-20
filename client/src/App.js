@@ -12,7 +12,7 @@ import Feed from "./pages/Feed";
 import Navbar from "./components/Navbar";
 import Footar from "./components/Footar";
 
-
+import Profile from "./pages/Profile";
 const Layout = () => {
   return (
     <>
@@ -37,9 +37,14 @@ const router = createBrowserRouter([
         element: <Feed />,
       },
       {
+        path:"/profile",
+        element:<Profile />
+      },
+      {
         path: "/write",
         element: <Write />,
       },
+      
     ],
   },
   {
