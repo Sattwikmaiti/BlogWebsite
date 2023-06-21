@@ -8,8 +8,10 @@ import axios from "axios"
 import profile1 from "../images/profile1.jpg";
 import {useContext} from "react"
 import { Context } from "../Context/Context";
+import ReactHtmlParser from 'react-html-parser';
 import Menu from "./Menu"
 import "./Feed.css"
+import ReactQuill from "react-quill";
 const Feed = () => {
   const {user}=useContext(Context)
   const PF = "http://localhost:5000/images/";
@@ -102,6 +104,7 @@ console.log(post)
       {post.photo && (
         <img src={PF + post.photo} alt="" className="singlePostImg" />
       )}
+      
       {updateMode ? (
         <input
           type="text"
@@ -112,11 +115,11 @@ console.log(post)
         />
       ) : (
         <h1 className="singlePostTitle">
-          {title}
+          <h1 style={{textDecoration:'2px underline'}}>{post.title}</h1>
           {post.username === user?.username && (
             <div className="singlePostEdit">
-              <EditNoteIcon sx={{fontSize:'35px'}}  onClick={() => setUpdateMode(true)}/>
-              <DeleteSweepIcon sx={{fontSize:'35px'}} onClick={handleDelete}/>
+              <EditNoteIcon sx={{fontSize:'35px',color:'white'}}  onClick={() => setUpdateMode(true)}/>
+              <DeleteSweepIcon sx={{fontSize:'35px',color:'white'}} onClick={handleDelete}/>
             </div>
           )}
         </h1>
@@ -126,26 +129,29 @@ console.log(post)
           Author:
           <Link to={`/?user=${post.username}`} className="link">
             <b> {post.username}</b>
+            <br />
+            
           </Link>
+          Posted :{new Date(post.createdAt).toDateString()}
         </span>
-        <span className="singlePostDate">
-          {new Date(post.createdAt).toDateString()}
-        </span>
-      </div>
-      {updateMode ? (
-        <textarea
-          className="singlePostDescInput"
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-        />
-      ) : (
-        <p className="singlePostDesc">{desc}</p>
-      )}
-      {updateMode && (
+        {updateMode && (
         <button className="singlePostButton" onClick={handleUpdate}>
           Update
         </button>
       )}
+
+     
+      </div>
+      {updateMode ? (
+        <ReactQuill
+          className="singlePostDescInput"
+          value={desc}
+          onChange={(e) => setDesc(e)}
+        />
+      ) : (
+        <p className="singlePostDesc">{ReactHtmlParser (desc)}</p>
+      )}
+      
     </div>
   </div>
   );

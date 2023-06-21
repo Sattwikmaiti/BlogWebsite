@@ -16,6 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import p1 from "../images/demo1.jpeg"
 import {Link} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
+
 const Navbar = () => {
 
 
@@ -41,7 +42,7 @@ const Navbar = () => {
   return (
     <div>
           <AppBar position="fixed" style={{backgroundColor:'black',}}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" wrap>
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography

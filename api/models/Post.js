@@ -23,6 +23,14 @@ const PostSchema = new mongoose.Schema(
         type: Array,
         required: false,
       },
+      likes:{
+        type:Number,
+        default:0
+      },
+      views:{
+        type:Number ,
+        default:0
+      }
     },
     { timestamps: {
       type:Number, default: new Date().getTime()

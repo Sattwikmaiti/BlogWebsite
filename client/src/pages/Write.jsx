@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { useContext} from "react";
-
+import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import { Context } from "../Context/Context";
 
@@ -20,6 +20,16 @@ const Write = () => {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+const [categories,setCategories] = useState([])
+const handleChange = (event) => {
+  const {
+    target: { value },
+  } = event;
+  setCategories(
+    // On autofill we get a stringified value.
+    typeof value === 'string' ? value.split(',') : value,
+  );
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +37,7 @@ const Write = () => {
       username: user.username,
       title,
       desc,
+      categories
     };
     if (file) {
       const data =new FormData();
@@ -44,18 +55,23 @@ const Write = () => {
     } catch (err) {}
   };
   return (
-    <div className="container" style={{marginTop:'10rem',backgroundColor:'white',borderRadius:'10px'}}>
+   
+  
+<>
+
+ {user ? (<div>  <div className="container" style={{marginTop:'10rem',backgroundColor:'white',borderRadius:'10px'}}>
       {file && (
         <img className="writeImg" src={URL.createObjectURL(file)} alt=""  style={{height:'25rem',width:'25rem'}}/>
       )}
          <div className="add">
+          
           <div className="contents">
           <div className="value">
              <div className="input">
-                 <input type='text' value={title} placeholder="Enter Title Here" style={{width:'100%',height:'3rem'}}  onChange={e=>setTitle(e.target.value)}/>
+                 <input type='text' value={title} placeholder="Enter Title Here" style={{width:'100%',height:'3rem'}}  onChange={e=>setTitle(e.target.value)} />
                  </div>
                  <div className="descriptions" >
-            <textarea  type="textarea" value={desc}  onChange={e=>setDesc(e.target.value)} placeholder='Enter Your Description' style={{height:'20rem',overFlow:'scroll',border:'2px solid black',width:'50rem'}} />
+            <ReactQuill theme="snow" value={desc}  onChange={(value)=>{console.log(ReactHtmlParser(value));setDesc((value))}} placeholder='Enter Your Description' style={{height:'40rem',overFlow:'scroll',border:'2px solid black',width:'50rem'}} />
             </div>
              </div>
             <div className="titled">
@@ -63,9 +79,15 @@ const Write = () => {
                  <div className="steps">
                  
                   <div className="save">
-                  <Button variant="contained" color="success" onClick={handleSubmit}>
-        Publish
-      </Button>
+                    {
+                      title!=null && desc!=null && file!=null && categories.length>0 && (  <Button variant="contained" color="success" onClick={handleSubmit}>
+                      Publish
+                    </Button>)
+                    }
+                
+
+
+    
                   </div>
                  
                   
@@ -75,19 +97,25 @@ const Write = () => {
                   </div>
                   <div className="categories">
               
-              <Box sx={{ minWidth: 20 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Box sx={{ minWidth: 40 }}>
+      <FormControl fullWidth style={{width:'10rem'}}>
+        <InputLabel id="demo-multiple-name-label">Category</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          
+           labelId="demo-multiple-name-label"
+           id="demo-multiple-name"
+           multiple
           label="Age"
+          value={categories}
+          onChange={handleChange}
           
         >
-          <MenuItem value={"art"}>Art</MenuItem>
-          <MenuItem value={"science"}>Science</MenuItem>
-          <MenuItem value={"education"}>Education</MenuItem>
+          <MenuItem value={"Art"}>Art</MenuItem>
+          <MenuItem value={"Science"}>Science</MenuItem>
+          <MenuItem value={"Technology"}>Technology</MenuItem>
+          <MenuItem value={"Cinema"}>Cinema</MenuItem>
+          <MenuItem value={"Design"}>Design</MenuItem>
+          <MenuItem value={"Food"}>Food</MenuItem>
+
         </Select>
       </FormControl>
     </Box>
@@ -104,7 +132,8 @@ const Write = () => {
           </div>
          </div>
       
-    </div>
+    </div></div>):(<div className="logtowrite">Login to Write</div>)}
+    </>            
   )
 }
 

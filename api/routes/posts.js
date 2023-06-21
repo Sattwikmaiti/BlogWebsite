@@ -38,6 +38,35 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+
+
+
+router.put("/updatelikes/:id", async (req, res) => {
+  
+    const todo = await Post.findOneAndUpdate({_id: req.params.id},{new:true});
+   todo.likes+=1;
+
+      todo.save();
+    
+      res.json(todo);
+
+
+});
+
+router.put("/updateviews/:id", async (req, res) => {
+  
+  const post = await Post.findOneAndUpdate({_id: req.params.id},{new:true});
+ post.views+=1;
+ 
+    post.save();
+  
+    res.json(post);
+
+
+});
+
+
+
 //DELETE POST
 router.delete("/:id", async (req, res) => {
   try {
