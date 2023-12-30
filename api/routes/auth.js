@@ -1,10 +1,13 @@
 
 const express =require("express"); 
+
 const bcrypt=require("bcrypt")
+
 const router = require("express").Router();
+
 const User = require("../models/User");
-
-
+const jwt=require("jsonwebtoken")
+const JWT_SEC="mysecretkey101"
 //REGISTER
 router.post("/register", async (req, res) => {
   try {
@@ -33,13 +36,27 @@ router.post("/login", async (req, res) => {
     //serverside error of user 
     !validated && res.status(400).json("Wrong credentials!");
 // except password all the other parmas will be stored in others ...from user._doc as object
+
+const accessToken = jwt.sign(
+  {
+      id: user._id,
+      username:user.username,
+      
+  },
+  JWT_SEC,
+      {expiresIn:"3d"}
+  );
     const { password, ...others } = user._doc;
-    res.status(200).json(others);
+    const responseData = { accessToken, ...others };
+    res.status(200).json(responseData);
   } catch (err) {
     //internal db error
 
     res.status(500).json(err);
   }
 });
+
+
+
 
 module.exports = router;

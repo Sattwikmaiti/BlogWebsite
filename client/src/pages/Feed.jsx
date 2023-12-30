@@ -41,14 +41,15 @@ const Feed = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(`${api_base}/posts/${post._id}`,{data:{
-        username:user.username
+        username:user.username,
+        token:JSON.parse(localStorage.getItem('userjwt')).accessToken,
       }}
        )
      
       window.location.replace("/");
     } catch (err) {
      
-      console.log(user.username === post.username)
+      console.log(err.message)
     }
   };
 
@@ -58,10 +59,12 @@ const Feed = () => {
         username: user.username,
         title,
         desc,
+        token:JSON.parse(localStorage.getItem('userjwt')).accessToken,
       });
       setUpdateMode(false)
     } catch (err) {}
   };
+  console.log(JSON.parse(localStorage.getItem('userjwt')))
 console.log(post)
   return (
 
@@ -116,12 +119,16 @@ console.log(post)
       ) : (
         <h1 className="singlePostTitle">
           <h1 style={{textDecoration:'2px underline'}}>{post.title}</h1>
-          {post.username === user?.username && (
+          {/* {post.username === user?.username && ( */}
             <div className="singlePostEdit">
-              <EditNoteIcon sx={{fontSize:'35px',color:'white'}}  onClick={() => setUpdateMode(true)}/>
+              <EditNoteIcon sx={{fontSize:'35px',color:'white'}}  onClick={() => {
+                
+                setUpdateMode(true)
+                
+                }}/>
               <DeleteSweepIcon sx={{fontSize:'35px',color:'white'}} onClick={handleDelete}/>
             </div>
-          )}
+          {/* )} */}
         </h1>
       )}
       <div className="singlePostInfo">

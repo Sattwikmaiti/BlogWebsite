@@ -21,6 +21,7 @@ const api_base="http://localhost:5000/api"
         username: userRef.current.value,
         password: passwordRef.current.value,
       });
+      localStorage.setItem("userjwt", JSON.stringify(res.data));
       navigate('/')
       console.log("Logged in Successfully")
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
