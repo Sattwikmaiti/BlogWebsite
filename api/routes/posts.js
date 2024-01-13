@@ -4,6 +4,14 @@ const Post = require("../models/Post");
 const jwt=require("jsonwebtoken")
 const JWT_SEC="mysecretkey101"
 //CREATE POST
+
+const redis = require("redis")
+const client = redis.createClient(
+  {legacyMode: true}
+)
+client.connect().catch(console.error)
+const defaultExpiration = 3600
+
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
   try {
@@ -121,30 +129,73 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// ?user=john&?cat=music
-router.get("/", async (req, res) => {
-    //query looks for ? in router.get("/")
-    const username = req.query.user;
-    const catName = req.query.cat;
-    try {
-      let posts;
-      if (username) {
-        posts = await Post.find({ username });
-      } else if (catName) {
-        //from categories array ...if inside it ..includes catname ...
-        posts = await Post.find({
-          categories: {
-            $in: [catName],
-          },
-        });
-      } else {
-        // no category name no username ...fetch all posts 
-        posts = await Post.find();
-      }
-      res.status(200).json(posts);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+//?user=john&?cat=music
+// router.get("/", async (req, res) => {
+//     //query looks for ? in router.get("/")
+//     const username = req.query.user;
+//     const catName = req.query.cat;
+//     try {
+//       let posts;
+//       if (username) {
+//         posts = await Post.find({ username });
+//       } else if (catName) {
+//         //from categories array ...if inside it ..includes catname ...
+//         posts = await Post.find({
+//           categories: {
+//             $in: [catName],
+//           },
+//         });
+//       } else {
+//         // no category name no username ...fetch all posts 
+//         posts = await Post.find();
+//       }
+
+
+//       //client.setEx("all", defaultExpiration, JSON.stringify(posts))
+//       res.status(200).json(posts);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
   
+
+router.get("/", async (req, res) => {
+  // Query looks for ? in router.get("/")
+  const username = req.query.user;
+  const catName = req.query.cat;
+  //const cacheKey = `${username || ""}_${catName || ""}`;
+
+  try {
+    // Check if data is in the cache
+    client.get('ball', async (error, cachedData) => {
+      if (error) throw error;
+
+      if (cachedData) {
+        // Data found in cache, send cached data
+        res.status(200).json(JSON.parse(cachedData));
+      } else {
+        let posts;
+
+        if (username) {
+          posts = await Post.find({ username });
+        } else if (catName) {
+          posts = await Post.find({
+            categories: {
+              $in: [catName],
+            },
+          });
+        } else {
+          posts = await Post.find();
+        }
+
+        // Set data in the cache
+        client.setEx("ball", defaultExpiration, JSON.stringify(posts));
+
+        res.status(200).json(posts);
+      }
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
   module.exports = router;
