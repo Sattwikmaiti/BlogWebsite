@@ -167,14 +167,40 @@ router.get("/", async (req, res) => {
 
   try {
     // Check if data is in the cache
-    client.get('ball', async (error, cachedData) => {
-      if (error) throw error;
+    // client.get('ball', async (error, cachedData) => {
+    //   if (error) throw error;
 
-      if (cachedData) {
-        // Data found in cache, send cached data
-        res.status(200).json(JSON.parse(cachedData));
-      } else {
-        let posts;
+    //   if (cachedData) {
+    //     // Data found in cache, send cached data
+    //     res.status(200).json(JSON.parse(cachedData));
+    //   } else {
+    //     let posts;
+
+    //     if (username) {
+    //       posts = await Post.find({ username });
+    //     } else if (catName) {
+    //       posts = await Post.find({
+    //         categories: {
+    //           $in: [catName],
+    //         },
+    //       });
+    //     } else {
+    //       posts = await Post.find();
+    //     }
+
+    //     // Set data in the cache
+    //     client.setEx("ball", defaultExpiration, JSON.stringify(posts));
+
+    //     res.status(200).json(posts);
+    //   }
+    // }
+    
+    
+    
+    
+    // );
+
+    let posts;
 
         if (username) {
           posts = await Post.find({ username });
@@ -189,11 +215,10 @@ router.get("/", async (req, res) => {
         }
 
         // Set data in the cache
-        client.setEx("ball", defaultExpiration, JSON.stringify(posts));
+   
 
         res.status(200).json(posts);
-      }
-    });
+
   } catch (err) {
     res.status(500).json(err);
   }

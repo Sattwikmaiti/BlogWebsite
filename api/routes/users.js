@@ -87,6 +87,7 @@ router.get('/sendotp', async (req, res) => {
       }
     });
     
+    
     console.log("started")
       // send mail with defined transport object
       const info = await transporter.sendMail({

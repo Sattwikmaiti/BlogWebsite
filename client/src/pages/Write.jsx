@@ -15,7 +15,7 @@ import { Context } from "../Context/Context";
 const Write = () => {
 
   
-  const api_base="http://localhost:5000/api"
+  const api_base="https://blogwebsite-v0qg.onrender.com/api"
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);

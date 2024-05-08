@@ -12,7 +12,7 @@ const Login = () => {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
-const api_base="http://localhost:5000/api"
+const api_base="https://blogwebsite-v0qg.onrender.com/api"
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });

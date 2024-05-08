@@ -10,7 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-const api_base="http://localhost:5000/api"
+const api_base="https://blogwebsite-v0qg.onrender.com/api"
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
