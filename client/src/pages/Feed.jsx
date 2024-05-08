@@ -3,13 +3,13 @@ import React,{useState,useEffect} from "react";
 import {useLocation,Link} from "react-router-dom"
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-import demo1 from "../images/demo1.jpeg";
+
 import axios from "axios"
-import profile1 from "../images/profile1.jpg";
+
 import {useContext} from "react"
 import { Context } from "../Context/Context";
 import ReactHtmlParser from 'react-html-parser';
-import Menu from "./Menu"
+
 import "./Feed.css"
 import ReactQuill from "react-quill";
 const Feed = () => {
@@ -25,11 +25,13 @@ const Feed = () => {
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
+    console.log(path)
     const getPost = async () => {
       const res = await axios.get(`${api_base}/posts/` + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      
     };
     return (()=>{
       getPost();
