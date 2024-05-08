@@ -25,14 +25,19 @@ const Feed = () => {
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
-    console.log(path)
+    
+    
     const getPost = async () => {
       const res = await axios.get(`${api_base}/posts/` + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+
+      console.log(res.data)
       
     };
+
+    
     return (()=>{
       getPost();
 
