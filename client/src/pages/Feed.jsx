@@ -20,6 +20,7 @@ const Feed = () => {
   const path=location.pathname.split("/")[2];
   //console.log(location.pathname.split("/")[2])
   const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
@@ -32,7 +33,7 @@ const Feed = () => {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
-
+      setLoading(false);
       console.log(res.data)
       
     };
@@ -109,8 +110,7 @@ console.log(post)
       </div>
       <div className="menu"><Menu /></div>
     </div>*/
-
-    <div className="singlePost">
+<div>{loading?<div>Loading...</div>:<div className="singlePost">
     <div className="singlePostWrapper">
       {post.photo && (
         <img src={PF + post.photo} alt="" className="singlePostImg" />
@@ -168,7 +168,8 @@ console.log(post)
       )}
       
     </div>
-  </div>
+  </div> }</div>
+    
   );
 };
 
