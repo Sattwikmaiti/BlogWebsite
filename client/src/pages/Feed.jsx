@@ -43,7 +43,7 @@ const Feed = () => {
 
     })
     
-  }, [path]);
+  }, [post]);
 
   const handleDelete = async () => {
     try {
