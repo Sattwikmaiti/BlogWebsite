@@ -54,7 +54,8 @@ const storagenew = multer.diskStorage({
 const uploadnew = multer({ storage: storagenew });
 
 app.post('/api/electron/upload', uploadnew.single('file'), (req, res) => {
-  res.json({ message: 'File uploaded successfully', filename: req.file.filename });
+
+  res.json({ message: 'File uploaded successfully', filename: req.file.filename,fileSize:req.file.size });
 });
 
 app.use("/api/auth", authRoute);
