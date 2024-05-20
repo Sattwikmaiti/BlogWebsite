@@ -58,6 +58,32 @@ app.post('/api/electron/upload', uploadnew.single('file'), (req, res) => {
   res.json({ message: 'File uploaded successfully', filename: req.file.filename,fileSize:req.file.size });
 });
 
+
+app.post('/api/electron/uploadCloud',async (req, res) => {
+ 
+  
+      // Configuration
+      cloudinary.config({ 
+          cloud_name: "dfg4vmqky", 
+          api_key: "938192236274369", 
+          api_secret: "u4TdIqJlotzG9y7Bf8NbF17YCro" // Click 'View Credentials' below to copy your API secret
+      });
+      
+      // Upload an image
+      const uploadResult = await cloudinary.uploader.upload(req.file, {
+          public_id: req.file.filename
+      }).catch((error)=>{console.log(error)});
+      
+      console.log(uploadResult);
+      
+      // Optimize delivery by resizing and applying auto-format and auto-quality
+        
+
+  
+});
+
+
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
