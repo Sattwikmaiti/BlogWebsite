@@ -9,7 +9,7 @@ const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require("path");
 
-
+const cloudinary = require('cloudinary').v2
 const cors=require("cors");
 dotenv.config();
 app.use(express.json());
