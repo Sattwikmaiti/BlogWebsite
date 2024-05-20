@@ -40,6 +40,23 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
+
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+const storagenew = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname);
+  }
+});
+const uploadnew = multer({ storage: storagenew });
+
+app.post('/api/electron/upload', uploadnew.single('file'), (req, res) => {
+  res.json({ message: 'File uploaded successfully', filename: req.file.filename });
+});
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
