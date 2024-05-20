@@ -68,18 +68,25 @@ app.post('/api/electron/uploadCloud',async (req, res) => {
           api_key: "938192236274369", 
           api_secret: "u4TdIqJlotzG9y7Bf8NbF17YCro" // Click 'View Credentials' below to copy your API secret
       });
-      
+    
       console.log("here")
       // Upload an image
-      const uploadResult = await cloudinary.uploader.upload(req.file, {
-          public_id: req.file.filename
-      }).catch((error)=>{console.log(error) ; res.status(500).json("Error"); } );
       
-      console.log(uploadResult);
+      try {
+        console.log(req.files)
+        if (!req.files || !req.files.file) {
+          return res.status(400).json({ error: 'No file uploaded' });
+      }
+        const file = req.files.file; // Assuming you're using middleware like multer to handle file uploads
 
-      res.status(200).json(uploadResult);
-      
-      // Optimize delivery by resizing and applying auto-format and auto-quality
+        // Upload file to Cloudinary
+        const result = await cloudinary.uploader.upload(file.tempFilePath);
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error uploading file to Cloudinary:', error);
+        res.status(500).json({ error: 'Error uploading file to Cloudinary' });
+    }
         
 
   
