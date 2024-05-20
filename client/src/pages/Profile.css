@@ -1,10 +1,12 @@
 .settings {
-    display: flex;
+    display: absolute !important;
+    
   }
+  
   
   .settingsWrapper {
     flex: 9;
-    padding: 20px;
+    padding: 20px; display: absolute
   }
   
   .settingsTitle {

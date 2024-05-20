@@ -10,7 +10,7 @@ const client = redis.createClient(
   {legacyMode: true}
 )
 client.connect().catch(console.error)
-const defaultExpiration = 3600
+const defaultExpiration = 5
 
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
@@ -157,50 +157,90 @@ router.get("/:id", async (req, res) => {
 //       res.status(500).json(err);
 //     }
 //   });
-  
+async function rateLimit(ipAddress) {
+  try {
+   await client.incr(`${ipAddress}`, (err, counter) => {
+
+   console.log("counter value",counter)
+      if(counter==1)
+      {client.expire(ipAddress, 20); return false;}
+
+
+      if (counter>10) {
+        return true;
+          // console.log('Rate limit exceeded for IP:', ipAddress);
+           // Return here to prevent further execution
+      } else {
+        return false;
+          // If rate limit is not exceeded, continue processing the request
+      }
+        
+      
+
+     }) 
+
+      return false;
+  } catch (error) {
+      console.error('Error incrementing counter:', error);
+      return true;
+      throw error;
+  }
+}
 
 router.get("/", async (req, res) => {
   // Query looks for ? in router.get("/")
+
+ 
+
+   
+  const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  console.log("Client IP Address:", ipAddress);
+
+  // Rate limit the request
+ 
   const username = req.query.user;
   const catName = req.query.cat;
   //const cacheKey = `${username || ""}_${catName || ""}`;
 
   try {
-    // Check if data is in the cache
-    // client.get('ball', async (error, cachedData) => {
-    //   if (error) throw error;
+   // Check if data is in the cache
+   const rateLimited = await client.incr(`${ipAddress}`, (err, counter) => {
 
-    //   if (cachedData) {
-    //     // Data found in cache, send cached data
-    //     res.status(200).json(JSON.parse(cachedData));
-    //   } else {
-    //     let posts;
+    console.log("counter value",counter)
+       if(counter==1)
+       {client.expire(ipAddress, 20); return false;}
+ 
+ 
+       if (counter>10) {
+        console.log(">10")
+         return true;
+          
+            // Return here to prevent further execution
+       } else {
+        console.log("ok")
+         return false;
+           // If rate limit is not exceeded, continue processing the request
+       }
+         
+       
+ 
+      }) 
+ ;
+   console.log(rateLimited)
+   if (rateLimited) {
+    console.log(": Rate limit ---------")
+       return res.status(401).statusMessage('Too Many Requests');
+   }
+console.log("request bypassed")
 
-    //     if (username) {
-    //       posts = await Post.find({ username });
-    //     } else if (catName) {
-    //       posts = await Post.find({
-    //         categories: {
-    //           $in: [catName],
-    //         },
-    //       });
-    //     } else {
-    //       posts = await Post.find();
-    //     }
+    client.get("caches", async (error, cachedData) => {
+      if (error) throw error;
 
-    //     // Set data in the cache
-    //     client.setEx("ball", defaultExpiration, JSON.stringify(posts));
-
-    //     res.status(200).json(posts);
-    //   }
-    // }
-    
-    
-    
-    
-    // );
-
-    let posts;
+      if (cachedData) {
+        // Data found in cache, send cached data
+        res.status(200).json(JSON.parse(cachedData));
+      } else {
+        let posts;
 
         if (username) {
           posts = await Post.find({ username });
@@ -215,12 +255,29 @@ router.get("/", async (req, res) => {
         }
 
         // Set data in the cache
-   
+        client.setEx("caches", defaultExpiration, JSON.stringify(posts));
+        client.ttl('caches',function(err,reply){
+          console.log("Cache Memory"+reply)
+        
+        })
 
-        res.status(200).json(posts);
+        return res.status(200).json(posts);
+      }
+    }
+    
+    
+    
+    
+    );
+
+  
+        
 
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+client.setNX("0.0.0.0", 0);
+
   module.exports = router;
