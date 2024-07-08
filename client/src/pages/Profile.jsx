@@ -58,8 +58,8 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "https://blogwebsite-v0qg.onrender.com/images/"
-const api_base = "https://blogwebsite-v0qg.onrender.com/api"
+  const PF = "http://localhost:5000/images/"
+const api_base = "http://localhost:5000/api"
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });

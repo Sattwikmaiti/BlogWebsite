@@ -14,8 +14,8 @@ import "./Feed.css"
 import ReactQuill from "react-quill";
 const Feed = () => {
   const {user}=useContext(Context)
-  const PF = "https://blogwebsite-v0qg.onrender.com/images/";
-  const api_base="https://blogwebsite-v0qg.onrender.com/api"
+  const PF = "http://localhost:5000/images/";
+  const api_base="http://localhost:5000/api"
   const location=useLocation()
   const path=location.pathname.split("/")[2];
   //console.log(location.pathname.split("/")[2])

@@ -82,8 +82,8 @@ router.get('/sendotp', async (req, res) => {
       // },
       service: 'gmail.com',
       auth:{
-          user:'sm.21u10285@btech.nitdgp.ac.in',
-          pass:'Sattwik@2002'
+          user:'maitisattwik@gmail.com',
+          pass:'asiepkljrnykrrhw'
       }
     });
     
@@ -94,8 +94,8 @@ router.get('/sendotp', async (req, res) => {
         from: '"Sattwik Maiti" <sm.21u10285@btech.nitdgp.ac.in>', // sender address
         to: "maitisattwik@gmail.com", // list of receivers
         subject: "Hello This Is your OTP sir ", // Subject line
-        text: "otp lelo", // plain text body
-        html: `<b>ye ha otp  ${new_otp}. bohot jaldi khtam hojaeyega</b>`, // html body
+        text: "OTP", // plain text body
+        html: `<b>This is your otp:  ${new_otp}. The Otp will expire in 5 minutes</b>`, // html body
      
       })
       console.log("sent")
@@ -117,13 +117,13 @@ console.log(storeotp)
 
      }
      catch(err ){
-
+       res.status(500).json(err)
      }
 
 })
 
 
-router.get('/checkotp',async(req,res)=>
+router.post('/checkotp',async(req,res)=>
 {
    
   try{
@@ -137,7 +137,7 @@ router.get('/checkotp',async(req,res)=>
         console.log('No OTP record found for the email.');
         return res.status(500).json("Error");
       }
-  
+    console.log(otpRecord.otp,userEnteredOTP)
       // Check if the provided OTP matches the stored OTP
       if (otpRecord.otp !== userEnteredOTP) {
         console.log('Incorrect OTP.');
@@ -153,7 +153,7 @@ router.get('/checkotp',async(req,res)=>
   
       // If all checks pass, the OTP is valid
       console.log('OTP is valid.');
-      return res.statusCode(200).json("valid");
+      return res.status(200).json("valid");
     } catch (error) {
       console.error('Error verifying OTP:', error);
       return res.status(500).json("Error");

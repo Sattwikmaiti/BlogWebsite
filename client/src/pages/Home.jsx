@@ -11,8 +11,8 @@ import {Context} from "../Context/Context.js"
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 const Home = () => {
-  const api_base="https://blogwebsite-v0qg.onrender.com/api"
-  const PF = "https://blogwebsite-v0qg.onrender.com/images/";
+  const api_base="http://localhost:5000/api"
+  const PF = "http://localhost:5000/images/";
   const {user}=useContext(Context)
   const [data,setData]=useState([])
 //console.log(user)

@@ -1,11 +1,59 @@
-![image](https://github.com/Sattwikmaiti/Blogwebsite/assets/90182231/db20f6d6-38a8-4e07-97ad-b5fc3bfcbb7e)
 
-![image](https://github.com/Sattwikmaiti/Blogwebsite/assets/90182231/3656f75a-14f2-4081-af7e-df67ed4214de)
-
-![image](https://github.com/Sattwikmaiti/Blogwebsite/assets/90182231/2322051a-7b46-4ace-a54c-90fa193d5363)
-
-![image](https://github.com/Sattwikmaiti/Blogwebsite/assets/90182231/b0c42bb1-52ca-4877-84b2-1e18f08ce45f)
+# Description 
 
 
+>1. # Register Page  : Note email : maitisattwil@gmail.com
+
+![image](./img1.png)
+
+
+>2. # Otp send to the above maitisattwik@gmail.com  (at 10.33 pm )
+![image](./im2.png)
+
+
+>3. # Otp submitted within 5 minutes and accepted 
+
+![image](./im3.png)
+
+
+>4. # Otp submitted at 10.39 pm , so otp becomes invalid
+
+![image](./im4.png)
+
+>5. # Redis / Cache MISS when first time fetched data {see Fetched time : 5.14s}
+
+![image](./im5.png)
+
+
+>6. # Redis / Cache HIT , when tried to fetch again ( see Fetched Time : 11s)
+
+![image](./im6.png)
+
+>7. # Rate Limiting - Client Ip address noted by Redis when first time cache HIT (Max Request Allowed with 20 sec : 10 tiems)
+
+![image](./im7.png)
+
+>8. # Rate limiting exceeded . 10 times requested  (Terminal counter value : 11/10 )
+
+
+![image](./im8.png)
+
+
+>9. # Home page 
+
+![image](./im11.png)
+
+
+>10. # Single Blog Page
+![image](./im12.png)
+
+
+>11. # Write Page 
+
+![image](./im13.png)
+
+
+>12. # Update Blog
+![image](./im14.png)
 
 
