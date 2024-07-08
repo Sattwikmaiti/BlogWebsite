@@ -25,7 +25,7 @@
 ![image](./im5.png)
 
 
->6. # Redis / Cache HIT , when tried to fetch again ( see Fetched Time : 11s)
+>6. # Redis / Cache HIT , when tried to fetch again ( see Fetched Time : 11ms)
 
 ![image](./im6.png)
 
